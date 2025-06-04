@@ -6,9 +6,14 @@ import os
 import streamlit as st
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # carrega as variáveis do .env
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Chave da API do Google Maps fornecida
-GOOGLE_API_KEY = "AIzaSyBuZ4q1hMeONkIQUBDeI9S6gTiBl4_GUdQ"
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 
 def geocode_address_google(endereco, bairro):
