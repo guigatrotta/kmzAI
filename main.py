@@ -11,6 +11,9 @@ from xml.etree import ElementTree as ET
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 # Chave da API do Google Maps fornecida
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
+if not GOOGLE_API_KEY:
+    st.error("Erro: variável de ambiente 'GOOGLE_API_KEY' não está definida.")
+    st.stop()
 
 def geocode_address_google(endereco, bairro):
     try:
