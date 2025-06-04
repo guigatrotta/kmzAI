@@ -6,8 +6,6 @@ import os
 import streamlit as st
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
-from dotenv import load_dotenv
-import os
 
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
