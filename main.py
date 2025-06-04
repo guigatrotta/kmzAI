@@ -9,10 +9,8 @@ from xml.etree import ElementTree as ET
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # carrega as variáveis do .env
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-
 # Chave da API do Google Maps fornecida
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 
