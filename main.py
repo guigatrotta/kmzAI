@@ -42,7 +42,17 @@ def gerar_kmz(df, caminho_saida):
         time.sleep(1)
 
         if lat and lon:
-            valor_formatado = f"R$ {int(valor):,}".replace(",", ".") if pd.notna(valor) and str(valor).isdigit() else valor
+            try:
+                # Tenta converter o valor para float e depois formatar
+                if pd.notna(valor):
+                    valor_num = float(valor)  # Converte para float para aceitar inteiros e floats
+                    valor_formatado = f"R$ {valor_num:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+                else:
+                    valor_formatado = valor
+            except (ValueError, TypeError):
+                # Se a conversão falhar, mantém o valor original
+                valor_formatado = valor
+
             desc = f"Bairro: {bairro}<br>Valor: {valor_formatado}<br>Área: {area} m²<br>Zoneamento: {zoneamento}"
             if pd.notna(link) and str(link).startswith("http"):
                 desc += f"<br><a href=\"{link}\">Ver imóvel</a>"
